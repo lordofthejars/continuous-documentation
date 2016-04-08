@@ -1,6 +1,6 @@
 = Todo Application
 Alex Soto
-v1.0
+v{project-version}
 :source-highlighter: highlightjs
 :example-caption!:
 :sourcedir: src/main/java

@@ -22,6 +22,6 @@ stage 'Documentation'
 
 node {
     unstash 'source'
-    sh './gradlew generateDocumentation'
+    sh './gradlew generateManual'
     publishHTML(target: [reportDir:'build/asciidoc/html5', reportFiles: 'manual.html', reportName: 'Manual'])
 }

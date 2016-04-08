@@ -45,10 +45,14 @@ asciidoctor {
     ]
 }
 
-
-task generateDocumentation(type:Exec) {
-    dependsOn compileJava
+task generateManual {
+    dependsOn 'generateJaxRsDocumentation'
     finalizedBy asciidoctor
+}
+
+
+task generateJaxRsDocumentation(type:Exec) {
+    dependsOn compileJava
 
     workingDir "${buildDir}"
 
