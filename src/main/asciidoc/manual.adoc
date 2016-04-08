@@ -1,0 +1,88 @@
+= Todo Application
+Alex Soto
+v1.0
+:source-highlighter: highlightjs
+:example-caption!:
+:sourcedir: src/main/java
+:rootdir:
+:applicationUrl: http://192.168.99.100
+:icons: font
+:experimental:
+:toc: left
+
+
+This service contains all the information required by `Todo` Application.
+
+== Installation
+
+`Todo` application comes in the form of `WAR` file and `Docker` image.
+
+=== Docker
+
+If you are using Docker you only need to have Docker installed on your machine and execute:
+
+`docker run -ti -p 80:8000 dockerinpractice/todo`
+
+For more options or how to run Docker in different platform check https://wwww.docker.com[Docker]
+
+=== WAR
+
+The application requires only a sever with `JAX-RS` installed.
+You can use a *JavaEE* application server like `Wildfly` or `Glassfish` or build yourself a `Jetty` or `Tomcat` with `JAX-RS`.
+
+IMPORTANT: Our recommendation is to use `Apache TomEE 7` as application server.
+
+.About Apache TomEE
+****
+Apache TomEE is an application server which can be summarized as `Tomcat` + `Java EE`.
+You get the best of the both worlds, the simplicity and light of Tomcat and the power of Java EE.
+****
+
+
+== Using Todo application
+
+Using Todo application is really easy since it is a simple web application with a single page.
+
+=== Ading a new TODO
+
+For adding a new todo you only need to access to the homepage of the application.
+There you will see a panel with an input box where you can type your todo.
+
+//{applicationUrl}
+
+.The TODO landing page
+screenshot::http://192.168.99.100[name=todo, frame=browser]
+
+After you've entered the content you can push btn:[Enter] button on your keyboard and message will be recorded on the system.
+
+//<< Keys.ENTER
+
+[geb]
+....
+$("input", class: "edit").value("Learn Jenkins Pipeline")
+....
+
+.Example of entered TODO
+screenshot::[frame=browser]
+
+And so on and so on ....
+
+== Technical Manual
+
+=== JAX-RS class
+
+Just in case you want to know how the REST API looks like you can see the `JAX-RS` endpoint where everything happens.
+
+[source, java]
+.org.todo.TodoResource
+----
+include::{rootdir}/{sourcedir}/org/todo/TodoResource.java[tags=documentation]
+----
+<1> Root endpoint
+<2> `GET` http method where all todos are returned
+<3> In case of `DELETE`, HTTP `noContent` code is returned.
+
+== JSON Documentation
+
+include::{rootDir}/build/todorest.adoc[leveloffset=+2]
+

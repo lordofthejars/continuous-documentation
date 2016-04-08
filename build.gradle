@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'org.asciidoctor:asciidoctorj-screenshot:0.1.0'
+    }
+}
+
+plugins {
+}
+
+// Apply the java plugin to add support for Java
+apply plugin: 'war'
+
+allprojects {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    group = 'org.todo'
+    version = '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencies {
+    providedCompile 'javax:javaee-api:7.0'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+apply plugin: 'org.asciidoctor.gradle.asciidoctor'
+
+asciidoctor {
+    sourceDir = file('src/main/asciidoc')
+    attributes = [
+            'screenshot-dir-name': "../screens",
+            'rootdir': "${rootDir}",
+            'applicationUrl': 'http://192.168.99.100/'
+    ]
+}
+
+
+task generateDocumentation(type:Exec) {
+    dependsOn compileJava
+    finalizedBy asciidoctor
+
+    workingDir "${buildDir}"
+
+    commandLine 'java',  '-jar',  'jaxrs-analyzer.jar',
+            '-b',  'asciidoc', '-o' , "${buildDir}/todorest.adoc" , "${buildDir}/classes/main"
+
+}
