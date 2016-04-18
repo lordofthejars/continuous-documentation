@@ -5,7 +5,7 @@ v{project-version}
 :example-caption!:
 :sourcedir: src/main/java
 :rootdir:
-:applicationUrl: http://192.168.99.100
+:application-url: http://192.168.99.100
 :icons: font
 :experimental:
 :toc: left
@@ -48,18 +48,14 @@ Using Todo application is really easy since it is a simple web application with 
 For adding a new todo you only need to access to the homepage of the application.
 There you will see a panel with an input box where you can type your todo.
 
-//{applicationUrl}
-
 .The TODO landing page
-screenshot::http://192.168.99.100[name=todo, frame=browser]
+screenshot::{application-url}[name=todo, frame=browser]
 
 After you've entered the content you can push btn:[Enter] button on your keyboard and message will be recorded on the system.
 
-//<< Keys.ENTER
-
 [geb]
 ....
-$("input", class: "edit").value("Learn Jenkins Pipeline")
+$("input", class: "edit").value("Learn Jenkins Pipeline") << Keys.ENTER
 ....
 
 .Example of entered TODO
