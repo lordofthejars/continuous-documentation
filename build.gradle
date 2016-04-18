@@ -40,7 +40,6 @@ apply plugin: 'org.asciidoctor.gradle.asciidoctor'
 asciidoctor {
     sourceDir = file('src/main/asciidoc')
     attributes = [
-            'screenshot-dir-name': "../screens",
             'rootdir': "${rootDir}",
             'application-url': 'http://192.168.99.100/'
     ]
