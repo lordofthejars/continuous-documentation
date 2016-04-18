@@ -9,6 +9,7 @@ v{project-version}
 :icons: font
 :experimental:
 :toc: left
+:data-uri:
 
 
 This service contains all the information required by `Todo` Application.
